@@ -35,9 +35,8 @@ if [[ ! -f "$HOME/server-setup/logs/env_module" ]]; then
 		cd ${TEMP_DIR}/modules-4.7.1
 		./configure --prefix=$MODULE_PREFIX/environment_modules --modulefilesdir=$MODULE_PREFIX/modules
 		make -j 20 && make install
-		cd ..
-		pwd
 		rm -rf $MODULE_PREFIX/modules
+		cd $CURR_DIR
 		mv modules $MODULE_PREFIX/
 		touch $HOME/server-setup/logs/env_module
 fi
