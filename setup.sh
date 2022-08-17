@@ -37,6 +37,7 @@ if [[ ! -f "$HOME/server-setup/logs/env_module" ]]; then
 		make -j 20 && make install
 		rm -rf $MODULE_PREFIX/modules
 		cd $CURR_DIR
+		pwd
 		mv modules $MODULE_PREFIX/
 		touch $HOME/server-setup/logs/env_module
 fi
