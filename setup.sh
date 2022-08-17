@@ -4,6 +4,7 @@ export MODULE_PREFIX="$HOME/Installed_Package"
 TEMP_DIR='temp'
 mkdir -p logs
 mkdir -p $TEMP_DIR
+mkdir -p $MODULE_PREFIX
 
 RED=$(tput setaf 1)
 NORMAL=$(tput sgr0)
