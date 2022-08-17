@@ -18,7 +18,7 @@ prepend-path    PATH    $env(MODULE_PREFIX)/bin/micromamba
 
 module-whatis   "$program version: $version"
 
-set-function    __add_sys_prefix_to_path() {
+set-function    __add_sys_prefix_to_path {
     # In dev-mode MAMBA_EXE is python.exe and on Windows
     # it is in a different relative location to condabin.
     if [ -z "${MAMBA_ROOT_PREFIX}" ]; then
@@ -38,7 +38,7 @@ set-function    __add_sys_prefix_to_path() {
     \export PATH
 }
 
-set-function    __conda_hashr() {
+set-function    __conda_hashr {
     if [ -n "${ZSH_VERSION:+x}" ]; then
         \rehash
     elif [ -n "${POSH_VERSION:+x}" ]; then
@@ -48,7 +48,7 @@ set-function    __conda_hashr() {
     fi
 }
 
-set-function    __mamba_activate() {
+set-function    __mamba_activate {
     \local cmd="$1"
     shift
     \local ask_conda
@@ -64,7 +64,7 @@ set-function    __mamba_activate() {
     __conda_hashr
 }
 
-set-function    __mamba_reactivate() {
+set-function    __mamba_reactivate {
     \local ask_conda
     CONDA_INTERNAL_OLDPATH="${PATH}"
     __add_sys_prefix_to_path
@@ -74,7 +74,7 @@ set-function    __mamba_reactivate() {
     __conda_hashr
 }
 
-set-function    mamba() {
+set-function    mamba {
     if [ "$#" -lt 1 ]; then
         "$MAMBA_EXE"
     else
