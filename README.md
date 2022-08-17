@@ -1,1 +1,1 @@
-# server-setup
+# Minimal server setup
