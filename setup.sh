@@ -2,6 +2,7 @@
 set -e
 export MODULE_PREFIX="$HOME/Installed_Package"
 TEMP_DIR='temp'
+CURR_DIR="$PWD"
 mkdir -p logs
 mkdir -p $TEMP_DIR
 mkdir -p $MODULE_PREFIX
