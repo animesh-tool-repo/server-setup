@@ -36,6 +36,15 @@ if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
 		./configure --prefix=$MODULE_PREFIX/environment_modules --modulefilesdir=$MODULE_PREFIX/modules
 		make -j 20 && make install
 		rm -rf $MODULE_PREFIX/modules
-		cp $CURR_DIR/modules $MODULE_PREFIX/
+		cp -r $CURR_DIR/modules $MODULE_PREFIX/
 		touch $CURR_DIR/logs/env_module
+fi
+
+if [[ ! -f "$CURR_DIR/logs/module_bash" ]]; then
+	center "${GREEN}Appending lines to bashrc${NORMAL}"
+		echo 'export MODULE_PREFIX="$HOME/Installed_Package"' >> ~/.bash_profile
+		echo '. $MODULE_PREFIX/environment_modules/init/bash' >> ~/.bash_profile
+		# echo "module load python/3.9.5 golang/1.16.4" >> $MODULE_PREFIX/environment_modules/init/modulerc
+		touch $CURR_DIR/logs/module_bash
+	center "${GREEN}Completed${NORMAL}"
 fi
