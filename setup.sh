@@ -19,15 +19,15 @@ center() {
 	printf '%*.*s %s %*.*s\n' 0 "$(((termwidth-2-${#1})/2))" "$padding" "$1" 0 "$(((termwidth-1-${#1})/2))" "$padding"
 }
 
-if [[ ! -f "$HOME/server-setup/logs/micromamba" ]]; then
+if [[ ! -f "$CURR_DIR/logs/micromamba" ]]; then
 	center "${GREEN}Downloading Micromamba${NORMAL}"
 		curl -fsSL 'https://micro.mamba.pm/api/micromamba/linux-64/latest' -o ${TEMP_DIR}/micromamba.tar.bz2 \
 			&& tar -xvf ${TEMP_DIR}/micromamba.tar.bz2 -C ${TEMP_DIR}
 		mv ${TEMP_DIR}/bin ${MODULE_PREFIX}/bin
-		touch $HOME/server-setup/logs/micromamba
+		touch $CURR_DIR/logs/micromamba
 fi
 
-if [[ ! -f "$HOME/server-setup/logs/env_module" ]]; then
+if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
 	center "${GREEN}Downloading Environment Module${NORMAL}"
 		rm -rf ${TEMP_DIR}/v4.7.1.tar.gz ${TEMP_DIR}/modules-4.7.1
 		wget https://github.com/cea-hpc/modules/archive/refs/tags/v4.7.1.tar.gz -P ${TEMP_DIR}
@@ -36,8 +36,6 @@ if [[ ! -f "$HOME/server-setup/logs/env_module" ]]; then
 		./configure --prefix=$MODULE_PREFIX/environment_modules --modulefilesdir=$MODULE_PREFIX/modules
 		make -j 20 && make install
 		rm -rf $MODULE_PREFIX/modules
-		cd $CURR_DIR
-		pwd
-		mv modules $MODULE_PREFIX/
-		touch $HOME/server-setup/logs/env_module
+		cp $CURR_DIR/modules $MODULE_PREFIX/
+		touch $CURR_DIR/logs/env_module
 fi
