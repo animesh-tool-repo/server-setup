@@ -21,7 +21,7 @@ center() {
 if [[ ! -f "$HOME/server-setup/logs/micromamba" ]]; then
 	center "${GREEN}Downloading Micromamba${NORMAL}"
 		curl -fsSL 'https://micro.mamba.pm/api/micromamba/linux-64/latest' -o ${TEMP_DIR}/micromamba.tar.bz2 \
-			&& tar -xvf ${TEMP_DIR}/micromamba.tar.bz2 
+			&& tar -xvf ${TEMP_DIR}/micromamba.tar.bz2 -C ${TEMP_DIR}
 		mv ${TEMP_DIR}/bin ${MODULE_PREFIX}/bin
 		touch $HOME/server-setup/logs/micromamba
 fi
