@@ -21,7 +21,7 @@ if [[ ! -f "$HOME/install-scripts/logs/micromamba" ]]; then
 	center "${GREEN}Downloading Micromamba${NORMAL}"
 		curl -fsSL 'https://micro.mamba.pm/api/micromamba/linux-64/latest' -o micromamba.tar.bz2 \
 			&& tar -xvf micromamba.tar.bz2 -C ${TEMP_DIR}
-		mv -r ${TEMP_DIR}/bin ${MODULE_PREFIX}/bin
+		mv ${TEMP_DIR}/bin ${MODULE_PREFIX}/bin
 		touch $HOME/install-scripts/logs/micromamba
 fi
 
@@ -34,6 +34,6 @@ if [[ ! -f "$HOME/install-scripts/logs/env_module" ]]; then
 		./configure --prefix=$MODULE_PREFIX/environment_modules --modulefilesdir=$MODULE_PREFIX/modules
 		make -j 20 && make install
 		rm -rf $MODULE_PREFIX/modules
-		mv -r modules $MODULE_PREFIX/modules
+		mv modules $MODULE_PREFIX/modules
 		touch $HOME/install-scripts/logs/env_module
 fi
