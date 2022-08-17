@@ -36,6 +36,6 @@ if [[ ! -f "$HOME/server-setup/logs/env_module" ]]; then
 		make -j 20 && make install
 		cd ..
 		rm -rf $MODULE_PREFIX/modules
-		mv modules $MODULE_PREFIX/modules
+		mv modules $MODULE_PREFIX/
 		touch $HOME/server-setup/logs/env_module
 fi
