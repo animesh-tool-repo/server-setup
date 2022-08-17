@@ -13,8 +13,7 @@ proc ModulesHelp { } {
 set program     Micromamba    
 set version     0.25.1
 setenv  MAMBA_EXE   $env(MODULE_PREFIX)/bin/micromamba
-setenv  MAMBA_ROOT_PREFIX   $env(MODULE_PREFIX)/envs
-prepend-path    PATH    $env(MODULE_PREFIX)/bin/micromamba
+setenv  MAMBA_ROOT_PREFIX   $env(MODULE_PREFIX)/condaenv
 
 module-whatis   "$program version: $version"
 
