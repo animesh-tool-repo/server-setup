@@ -43,6 +43,7 @@ fi
 if [[ ! -f "$CURR_DIR/logs/default_env" ]]; then
 	center "${GREEN}Setting up default environment${NORMAL}"
 	. $MODULE_PREFIX/environment_modules/init/bash
+	module avail
 	module load mamba \
 		&& mamba create -y -f $CURR_DIR/envs/default.yaml
 	touch $CURR_DIR/logs/default_env
