@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+##
+## Program modulefile
+##
+proc ModulesHelp { } {
+        global version prefix program
+
+        puts stderr "\t$program version: $version"
+        puts stderr "\t$program Prefix: $prefix"
+}
+
+# for Tcl script use only
+set program		Default software	
+set	version		latest
+set	prefix		$env(MODULE_PREFIX)/condaenv/envs/default
+
+module-whatis	"$program version: $version"
+
+prepend-path	PATH   			$prefix/bin
+prepend-path	LIBPATH			$prefix/lib
+prepend-path	MANPATH			$prefix/share/man
