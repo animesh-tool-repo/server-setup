@@ -10,7 +10,7 @@ proc ModulesHelp { } {
 }
 
 # for Tcl script use only
-set program		Default software	
+set     program         Default_software	
 set	version		latest
 set	prefix		$env(MODULE_PREFIX)/condaenv/envs/default
 
