@@ -53,7 +53,7 @@ if [[ ! -f "$CURR_DIR/logs/module_bash" ]]; then
 	center "${GREEN}Appending lines to bashrc${NORMAL}"
 		echo 'export MODULE_PREFIX="$HOME/Installed_Package"' >> ~/.bash_profile
 		echo '. $MODULE_PREFIX/environment_modules/init/bash' >> ~/.bash_profile
-		echo "module load mamba" >> $MODULE_PREFIX/environment_modules/init/modulerc
+		echo "module load mamba default" >> $MODULE_PREFIX/environment_modules/init/modulerc
 		touch $CURR_DIR/logs/module_bash
 	center "${GREEN}Completed${NORMAL}"
 fi
