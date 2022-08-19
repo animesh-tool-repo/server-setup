@@ -19,6 +19,14 @@ dependencies:
   - ucsc-fatovcf>=426
   - pip:
     - mpire
+    - arrow 
+    - pandas 
+    - Cython
+    - pytools
+    - pendulum 
+    - openpyxl 
+    - fuzzyset 
+    - biopython 
     - ultraimport
     - python-dotenv
     - more-itertools
