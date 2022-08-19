@@ -32,6 +32,11 @@ if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
 		${MODULE_PREFIX}/bin/micromamba create -y -c conda-forge -r ${MODULE_PREFIX} -n environment_modules environment-modules 
 		mv ${MODULE_PREFIX}/envs/environment_modules ${MODULE_PREFIX}
 		rm -rf ${MODULE_PREFIX}/envs ${MODULE_PREFIX}/pkgs
+		rm -rf $MODULE_PREFIX/environment_modules/modulefiles
+		cp -r $CURR_DIR/modules $MODULE_PREFIX/
+		echo "module use  $MODULE_PREFIX/modules" >> $MODULE_PREFIX/environment_modules/init/modulerc
+		echo "module load mamba default" >> $MODULE_PREFIX/environment_modules/init/modulerc
+		touch $CURR_DIR/logs/env_module
 fi
 
 # if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
