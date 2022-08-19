@@ -106,3 +106,63 @@ set-function    mamba {
         esac
     fi
 }
+
+set-function    __conda_activate {
+    \local cmd="$1"
+    shift
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$MAMBA_EXE" shell --shell bash "$cmd" "$@")" || \return $?
+    rc=$?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    if [ $rc != 0 ]; then
+        \export PATH
+    fi
+    __conda_hashr
+}
+
+set-function    __conda_reactivate {
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$MAMBA_EXE" shell --shell bash reactivate)" || \return $?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+set-function    conda {
+    if [ "$#" -lt 1 ]; then
+        "$MAMBA_EXE"
+    else
+        \local cmd="$1"
+        shift
+        case "$cmd" in
+            activate|deactivate)
+                __mamba_activate "$cmd" "$@"
+                ;;
+            install|update|upgrade|remove|uninstall)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$MAMBA_EXE" "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                if [ $t1 = 0 ]; then
+                    __mamba_reactivate
+                else
+                    return $t1
+                fi
+                ;;
+            *)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$MAMBA_EXE" "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                return $t1
+                ;;
+        esac
+    fi
+}
