@@ -33,9 +33,9 @@ if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
 			-p ${MODULE_PREFIX}/environment_modules environment-modules 
 		rm -rf $MODULE_PREFIX/environment_modules/modulefiles
 		cp -r $CURR_DIR/modules $MODULE_PREFIX/
-		echo "#%Module1.0" >> $MODULE_PREFIX/environment_modules/init/modulerc
-		echo "module use $MODULE_PREFIX/modules" >> $MODULE_PREFIX/environment_modules/init/modulerc
-		echo "module load mamba default" >> $MODULE_PREFIX/environment_modules/init/modulerc
+		echo "#%Module1.0" >> $HOME/.modulerc
+		echo "module use $MODULE_PREFIX/modules" >> $HOME/.modulerc
+		echo "module load mamba default" >> $HOME/.modulerc
 		touch $CURR_DIR/logs/env_module
 fi
 
