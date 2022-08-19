@@ -29,7 +29,7 @@ fi
 
 if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
 	center "${GREEN}Setting up Environment Module${NORMAL}"
-		${MODULE_PREFIX}/bin/micromamba -n environment_modules environment-modules -c conda-forge -r ${MODULE_PREFIX}
+		${MODULE_PREFIX}/bin/micromamba -c conda-forge -r ${MODULE_PREFIX} -n environment_modules environment-modules 
 fi
 
 # if [[ ! -f "$CURR_DIR/logs/env_module" ]]; then
